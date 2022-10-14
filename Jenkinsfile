@@ -55,7 +55,7 @@ pipeline {
            // steps {
                 //sh "docker -H ssh://ec2-user@ec2-18-181-206-78.ap-northeast-1.compute.amazonaws.com run -d -p 8003:8080 shraddhagaikwad52/demo"
  
-            }
+            //}
         }
     }
 	}
