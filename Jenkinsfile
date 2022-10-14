@@ -9,8 +9,7 @@ pipeline {
       stage('checkout') {
            steps {
              
-                git branch: 'main', url: 'https://github.com/ShraddhaGithub123/demo.git'
-		git pull origin main 
+                git branch: 'master', url: 'https://github.com/ShraddhaGithub123/demo.git'
              
           }
         }
