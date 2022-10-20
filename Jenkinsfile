@@ -40,7 +40,7 @@ pipeline {
             groupId: "${mavenPom.groupId}",
             version: "${mavenPom.version}",
             repository: "${env.ARTREPO}",
-            credentialsId: "nexus3", //nexus3 //shubhnexus
+            credentialsId: "nexus", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
                 classifier: '',
