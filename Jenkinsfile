@@ -35,11 +35,11 @@ pipeline {
           def mavenPom = readMavenPom file: 'pom.xml'
           nexusArtifactUploader(
             nexusVersion: 'nexus3',
-            protocol: "${env.ARTPROTO}",
-            nexusUrl: "${env.ARTURL}",
-            groupId: "${mavenPom.groupId}",
-            version: "${mavenPom.version}",
-            repository: "${env.ARTREPO}",
+            protocol: "http",
+            nexusUrl: "18.181.249.106:8081",
+            groupId: "com.devops4solutions",
+            version: "1",
+            repository: "demo",
             credentialsId: "nexus", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
