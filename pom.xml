@@ -5,7 +5,7 @@
   <artifactId>LoginWebApp</artifactId>
   <packaging>war</packaging>
   <version>1</version>
-  <name>LoginWebApp Maven Webapp</name>
+  <name>demo</name>
   <url>http://maven.apache.org</url>
   <dependencies>
      <dependency>
