@@ -29,7 +29,29 @@ pipeline {
         }
       }
     }
-
+    stage("Upload Artifactory to Nexus") {
+      steps {
+        script {
+          def mavenPom = readMavenPom file: 'pom.xml'
+          nexusArtifactUploader(
+            nexusVersion: 'nexus3',
+            protocol: "${env.ARTPROTO}",
+            nexusUrl: "${env.ARTURL}",
+            groupId: "${mavenPom.groupId}",
+            version: "${mavenPom.version}",
+            repository: "${env.ARTREPO}",
+            credentialsId: "nexus3", //nexus3 //shubhnexus
+            artifacts: [
+              [artifactId: 'LoginWebApp',
+                classifier: '',
+                file: "target/demo-${mavenPom.version}.${mavenPom.packaging}",
+                type: "${mavenPom.packaging}"
+              ]
+            ]
+          )
+        }
+      }
+    }
     stage('Docker Build and Tag') {
       steps {
 
