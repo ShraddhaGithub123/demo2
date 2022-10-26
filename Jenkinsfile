@@ -29,7 +29,7 @@ pipeline {
         }
       }
     }*/
-    stage("Upload Artifactory to Nexus") {
+    /*stage("Upload Artifactory to Nexus") {
       steps {
         script {
           def mavenPom = readMavenPom file: 'pom.xml'
@@ -50,6 +50,14 @@ pipeline {
             ]
           )
         }
+      }
+  }*/
+    stage('upload artifact ') {
+      steps {
+        // nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: 'jar', file: 'target/my-app-1.0.0.jar', type: '']], credentialsId: 'nexuscred', groupId: 'com.mycompany.app', nexusUrl: '18.183.254.123:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp', version: '1.0.0'
+        nexusArtifactUploader artifacts: [
+          [artifactId: 'junit', classifier: '', file: 'target/webappExample.war', type: 'war']
+        ], credentialsId: 'nexuscred', groupId: 'com.javarticles.webapp', nexusUrl: '54.199.167.179:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'webapp', version: '0.0.1-SNAPSHOT'
       }
     }
     stage('Docker Build and Tag') {
