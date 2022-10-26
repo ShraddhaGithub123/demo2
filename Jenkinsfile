@@ -36,16 +36,16 @@ pipeline {
           nexusArtifactUploader(
             nexusVersion: 'nexus3',
             protocol: "http",
-            nexusUrl: "18.181.249.106:8081",
+            nexusUrl: "18.183.190.99:8081",
             groupId: "com.devops4solutions",
             version: "1",
             repository: "demo",
-            credentialsId: "nexus", //nexus3 //shubhnexus
+            credentialsId: "admin", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
                 classifier: '',
-                file: "target/demo-${mavenPom.version}.${mavenPom.packaging}",
-                type: "${mavenPom.packaging}"
+                file: "target/LoginWebApp-1.war",
+                type: "war"
               ]
             ]
           )
