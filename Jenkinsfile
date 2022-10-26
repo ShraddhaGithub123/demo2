@@ -19,7 +19,7 @@ pipeline {
       }
     }
 
-    stage('SonarQube analysis') {
+    /*stage('SonarQube analysis') {
       //    def scannerHome = tool 'SonarScanner 4.0';
       steps {
         withSonarQubeEnv('sonar') {
@@ -28,7 +28,7 @@ pipeline {
           sh "mvn sonar:sonar"
         }
       }
-    }
+    }*/
     stage("Upload Artifactory to Nexus") {
       steps {
         script {
