@@ -52,14 +52,35 @@ pipeline {
         }
       }
   }*/
-    stage('upload artifact ') {
+    stage('Pull Ansible playbook') {
+      agent {
+        label 'ans'
+      }
+      steps {
+        git branch: 'master', url: 'https://github.com/ShraddhaGithub123/ansiblerepo'
+      }
+    }
+
+    stage('Ansible Tomcat Deployment') {
+      agent {
+        label 'ans'
+      }
+      steps {
+        ansiblePlaybook credentialsId: 'tomanscred',
+          disableHostKeyChecking: true,
+          installation: 'ansible',
+          inventory: 'hosts',
+          playbook: 'main.yaml'
+      }
+    }
+    /*stage('upload artifact ') {
       steps {
         // nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: 'jar', file: 'target/my-app-1.0.0.jar', type: '']], credentialsId: 'nexuscred', groupId: 'com.mycompany.app', nexusUrl: '18.183.254.123:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp', version: '1.0.0'
         nexusArtifactUploader artifacts: [
           [artifactId: 'LoginWebApp', classifier: '', file: 'target/LoginWebApp-1.war', type: 'war']
         ], credentialsId: 'admin', groupId: 'com.devops4solutions', nexusUrl: '18.183.190.99:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demo', version: '1'
       }
-    }
+    }*/
     stage('Docker Build and Tag') {
       steps {
 
