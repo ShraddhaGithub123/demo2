@@ -52,7 +52,15 @@ pipeline {
         }
       }
   }*/
-    
+    stage('Pull Ansible playbook') {
+            agent {
+                label 'ans'
+            }
+            steps {
+                git branch: 'master', url: 'https://github.com/anshika109/ansiblerepo.git'
+            }
+        }
+
     stage('Ansible Tomcat Deployment') {
       agent {
         label 'ans'
