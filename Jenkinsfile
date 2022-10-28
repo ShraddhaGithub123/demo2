@@ -52,21 +52,13 @@ pipeline {
         }
       }
   }*/
-    stage('Pull Ansible playbook') {
-      agent {
-        label 'ans'
-      }
-      steps {
-        git branch: 'master', url: 'https://github.com/ShraddhaGithub123/ansiblerepo'
-      }
-    }
-
+    
     stage('Ansible Tomcat Deployment') {
       agent {
         label 'ans'
       }
       steps {
-        ansiblePlaybook credentialsId: 'tomanscred',
+        ansiblePlaybook credentialsId: 'ubuntu',
           disableHostKeyChecking: true,
           installation: 'ansible',
           inventory: 'hosts',
