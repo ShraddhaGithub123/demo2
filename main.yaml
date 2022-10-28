@@ -14,11 +14,10 @@
         url: "{{URL_TOM}}"
         dest: ./
     - name: Extract tomcat to /opt
-      copy:
+      unarchive:
         src: ./{{ URL_TOMZIP }}
         dest: ./
         remote_src: true
-      shell: gunzip ./
     - name: Download Artifact
       copy:
         src: ./helloworld-0.0.1.war
