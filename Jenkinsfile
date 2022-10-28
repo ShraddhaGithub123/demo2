@@ -69,7 +69,7 @@ pipeline {
         ansiblePlaybook credentialsId: 'ubuntu',
           disableHostKeyChecking: true,
           installation: 'ansible',
-         // inventory: 'hosts',
+          inventory: 'hosts',
           playbook: 'main.yaml'
       }
     }
