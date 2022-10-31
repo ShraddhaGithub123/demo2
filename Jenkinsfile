@@ -20,11 +20,10 @@ pipeline {
     }
 
     stage('SonarQube analysis') {
-      //    def scannerHome = tool 'SonarScanner 4.0';
       steps {
         withSonarQubeEnv('sonar') {
-          //sh "mvn sonar:sonar"
-          sh "org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
+          sh "mvn sonar:sonar"
+          //sh "org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
         }
       }
     }
