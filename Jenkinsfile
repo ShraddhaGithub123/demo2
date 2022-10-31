@@ -23,8 +23,6 @@ pipeline {
       //    def scannerHome = tool 'SonarScanner 4.0';
       steps {
         withSonarQubeEnv('sonar') {
-          // If you have configured more than one global server connection, you can specify its name
-          // sh "${scannerHome}/bin/sonar-scanner"
           sh "mvn sonar:sonar"
         }
       }
@@ -78,7 +76,6 @@ pipeline {
 
         sh 'docker build -t demo:latest .'
         sh 'docker tag demo shraddhagaikwad52/demo:latest'
-        //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
 
       }
     }
@@ -88,7 +85,6 @@ pipeline {
       steps {
         withDockerRegistry([credentialsId: "dockerHub", url: ""]) {
           sh 'docker push shraddhagaikwad52/demo:latest'
-          //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
         }
 
       }
@@ -101,12 +97,5 @@ pipeline {
 
       }
     }
-    /*stage('Run Docker container on remote hosts') {
-
-      steps {
-        sh "docker -H ssh://ec2-user@ec2-18-181-206-78.ap-northeast-1.compute.amazonaws.com run -d -p 8003:8080 shraddhagaikwad52/demo"
-
-      }
-    }*/
   }
 }
