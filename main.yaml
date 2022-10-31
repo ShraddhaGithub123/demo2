@@ -2,8 +2,8 @@
 - name: Tomcat Deployment
   hosts: all
   become: true
-  #become_method: sudo
-  #become_user: root
+  become_method: sudo
+  become_user: root
   vars:
     URL_ART: "http://3.108.44.96:8081/repository/hello/com/springhow/example/helloworld/0.0.1/helloworld-0.0.1.war"
     #URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.zip"
