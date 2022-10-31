@@ -21,7 +21,7 @@
         remote_src: true
     - name: Download Artifact
       copy:
-        src: ./helloworld-0.0.1.war
+        src: ./LoginWebApp-1.war
         dest: ./apache-tomcat-8.5.83/webapps/
     - name: start tomcat
       shell: sh apache-tomcat-8.5.83/bin/catalina.sh start
