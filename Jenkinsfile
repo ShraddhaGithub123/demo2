@@ -27,7 +27,7 @@ pipeline {
         }
       }
     }
-    /*stage("Upload Artifactory to Nexus") {
+    stage("Upload Artifactory to Nexus") {
       steps {
         script {
           def mavenPom = readMavenPom file: 'pom.xml'
@@ -49,7 +49,7 @@ pipeline {
           )
         }
       }
-  }*/
+  }
 
     stage('Ansible Tomcat Deployment') {
       agent {
