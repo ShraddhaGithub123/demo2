@@ -19,15 +19,15 @@ pipeline {
       }
     }
 
-    stage('SonarQube analysis') {
+    /*stage('SonarQube analysis') {
       steps {
         withSonarQubeEnv('sonar') {
           sh "mvn sonar:sonar"
           //sh "org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
         }
       }
-    }
-    stage("Upload Artifactory to Nexus") {
+    }*/
+    /*stage("Upload Artifactory to Nexus") {
       steps {
         script {
           def mavenPom = readMavenPom file: 'pom.xml'
@@ -49,7 +49,7 @@ pipeline {
           )
         }
       }
-  }
+  }*/
 
     stage('Ansible Tomcat Deployment') {
       agent {
