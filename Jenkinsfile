@@ -38,7 +38,7 @@ pipeline {
             groupId: "com.devops4solutions",
             version: "1",
             repository: "demo",
-            credentialsId: "admin", //nexus3 //shubhnexus
+            credentialsId: "nexus", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
                 classifier: '',
