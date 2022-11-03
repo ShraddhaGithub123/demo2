@@ -34,11 +34,11 @@ pipeline {
           nexusArtifactUploader(
             nexusVersion: 'nexus3',
             protocol: "http",
-            nexusUrl: "35.78.69.52:8081",
+            nexusUrl: "13.234.37.215:8081",
             groupId: "com.devops4solutions",
             version: "1",
             repository: "demo",
-            credentialsId: "nexus", //nexus3 //shubhnexus
+            credentialsId: "nexus3", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
                 classifier: '',
