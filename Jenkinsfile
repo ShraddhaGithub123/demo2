@@ -74,8 +74,8 @@ pipeline {
     stage('Docker Build and Tag') {
       steps {
 
-        sh 'docker build -t demo:latest .'
-        sh 'docker tag demo shraddhagaikwad52/demo:AAAAAAAAAAAA'
+        sh 'docker build -t demo .'
+        sh 'docker tag demo shraddhagaikwad52/demo:shra'
 
       }
     }
@@ -84,7 +84,7 @@ pipeline {
 
       steps {
         withDockerRegistry([credentialsId: "dockerHub", url: ""]) {
-          sh 'docker push shraddhagaikwad52/demo:latest'
+          sh 'docker push shraddhagaikwad52/demo:shra'
         }
 
       }
