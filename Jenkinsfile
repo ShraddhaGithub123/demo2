@@ -75,7 +75,7 @@ pipeline {
       steps {
 
         sh 'docker build -t demo:latest .'
-        sh 'docker tag demo shraddhagaikwad52/demo:latest'
+        sh 'docker tag demo shraddhagaikwad52/demo:AAAAAAAAAAAA'
 
       }
     }
