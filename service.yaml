@@ -1,23 +1,14 @@
-kind: Service
-
+--- 
 apiVersion: v1
-
-metadata:
-
+kind: Service
+metadata: 
   name: loginapp
-
-spec:
-
-  selector:
-
+spec: 
+  ports: 
+    - 
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector: 
     app: loginapp
-
-  ports:
-
-  - protocol: TCP
-
-    port: 80
-
-    targetPort: 8080
-
   type: LoadBalancer
