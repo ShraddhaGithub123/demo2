@@ -51,7 +51,7 @@ pipeline {
       }
   }*/
 
-    stage('Ansible Tomcat Deployment') {
+    /*stage('Ansible Tomcat Deployment') {
       agent {
         label 'ans'
       }
@@ -62,7 +62,7 @@ pipeline {
           inventory: 'hosts',
           playbook: 'main.yaml'
       }
-    }
+    }*/
     /*stage('upload artifact ') {
       steps {
         // nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: 'jar', file: 'target/my-app-1.0.0.jar', type: '']], credentialsId: 'nexuscred', groupId: 'com.mycompany.app', nexusUrl: '18.183.254.123:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp', version: '1.0.0'
