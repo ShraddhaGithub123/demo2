@@ -8,7 +8,7 @@ pipeline {
     stage('checkout') {
       steps {
 
-        git branch: 'master', url: 'https://github.com/ShraddhaGithub123/demo.git'
+        git branch: 'master', url: 'https://github.com/ShraddhaGithub123/demo2.git'
 
       }
     }
@@ -75,7 +75,7 @@ pipeline {
       steps {
 
         sh 'docker build -t demo:temp .'
-        sh 'docker tag demo shraddhagaikwad52/demo:temp'
+        sh 'docker tag demo shraddhagaikwad52/demo2:temp'
 
       }
     }
@@ -84,7 +84,7 @@ pipeline {
 
       steps {
         withDockerRegistry([credentialsId: "dockerHub", url: ""]) {
-          sh 'docker push shraddhagaikwad52/demo:temp'
+          sh 'docker push shraddhagaikwad52/demo2:temp'
         }
 
       }
@@ -93,7 +93,7 @@ pipeline {
     stage('Run Docker container on Jenkins Agent') {
 
       steps {
-        sh "docker run -d -p 8003:8080 shraddhagaikwad52/demo"
+        sh "docker run -d -p 8003:8080 shraddhagaikwad52/demo2"
 
       }
     }
