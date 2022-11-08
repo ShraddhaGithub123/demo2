@@ -5,8 +5,7 @@
   become_method: sudo
   become_user: root
   vars:
-    URL_ART: "http://3.108.44.96:8081/repository/hello/com/springhow/example/helloworld/0.0.1/helloworld-0.0.1.war"
-    #URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.zip"
+    #URL_ART: "http://3.108.44.96:8081/repository/hello/com/springhow/example/helloworld/0.0.1/helloworld-0.0.1.war"
     URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz"
     URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
   tasks:
@@ -20,8 +19,12 @@
         dest: ./
         remote_src: true
     - name: Download Artifact
-      copy:
-        src: ./target/LoginWebApp-1.war
-        dest: ./apache-tomcat-8.5.83/webapps/
+    - maven_artifact:
+        group_id: com.setup
+        artifact_id: customerfile
+        repository_url: 'http://10.0.3.11:8081/repository/maven-releases/'
+        username: uname
+        password: pass
+        dest: ./apache-tomcat-8.5.83/webapps/LoginWebApp-1.war
     - name: start tomcat
       shell: sh apache-tomcat-8.5.83/bin/catalina.sh start
