@@ -80,8 +80,7 @@ pipeline {
 
         //sh 'docker build -t demo:temp .'
         //sh 'docker tag demo shraddhagaikwad52/demo2:temp'
-        sh "docker build . -t demo2:${DOCKER_TAG} "
-        sh 'docker tag demo2 shraddhagaikwad52/demo2:v01 '
+        sh "docker build . -t shraddhagaikwad52/demo2:${DOCKER_TAG} "
   
       }
     }
