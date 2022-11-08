@@ -1,4 +1,15 @@
 pipeline {
+   environment {
+        def ARTID = 'LoginWebApp'
+        def ARTTYPE = 'war'
+        def ARTGRPID = 'com.devops4solutionse'
+        def ARTURL = '13.234.37.215:8081'  //change ip
+        def ARTREPO = 'demo'
+        def ARTVER = '1'
+        def ARTPROTO = 'http'
+        DOCKER_TAG = getVersion()
+        //def ARTDOWPATH = '$ARTPROTO://$ARTURL/repository/$ARTREPO' //http://3.108
+   }
   agent any
 
   tools {
@@ -33,17 +44,17 @@ pipeline {
           def mavenPom = readMavenPom file: 'pom.xml'
           nexusArtifactUploader(
             nexusVersion: 'nexus3',
-            protocol: "http",
-            nexusUrl: "13.234.37.215:8081",
-            groupId: "com.devops4solutions",
-            version: "1",
-            repository: "demo",
+            protocol: "${env.ARTPROTO}",
+            nexusUrl: "${env.ARTURL}",
+            groupId: "${mavenPom.groupId}",
+            version: "${mavenPom.version}",
+            repository: "${env.ARTREPO}",
             credentialsId: "nexus3", //nexus3 //shubhnexus
             artifacts: [
               [artifactId: 'LoginWebApp',
                 classifier: '',
-                file: "target/LoginWebApp-1.war",
-                type: "war"
+                file: "target/LoginWebApp-${mavenPom.version}.${mavenPom.packaging}",
+                type: "${mavenPom.packaging}"
               ]
             ]
           )
@@ -74,9 +85,10 @@ pipeline {
     stage('Docker Build and Tag') {
       steps {
 
-        sh 'docker build -t demo:temp .'
-        sh 'docker tag demo shraddhagaikwad52/demo2:temp'
-
+        //sh 'docker build -t demo:temp .'
+        //sh 'docker tag demo shraddhagaikwad52/demo2:temp'
+        sh "docker build . -t shraddhagaikwad52/demo2:${DOCKER_TAG} "
+  
       }
     }
 
@@ -84,7 +96,7 @@ pipeline {
 
       steps {
         withDockerRegistry([credentialsId: "dockerHub", url: ""]) {
-          sh 'docker push shraddhagaikwad52/demo2:temp'
+          sh 'docker push shraddhagaikwad52/demo2:${DOCKER_TAG}'
         }
 
       }
@@ -98,4 +110,8 @@ pipeline {
       }
     }
   }
+}
+def getVersion(){
+    def commitHash = sh label: '', returnStdout: true, script: 'git rev-parse --short HEAD'
+    return commitHash
 }
