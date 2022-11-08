@@ -74,20 +74,14 @@ pipeline {
           playbook: 'main.yaml'
       }
     }*/
-    /*stage('upload artifact ') {
-      steps {
-        // nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: 'jar', file: 'target/my-app-1.0.0.jar', type: '']], credentialsId: 'nexuscred', groupId: 'com.mycompany.app', nexusUrl: '18.183.254.123:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp', version: '1.0.0'
-        nexusArtifactUploader artifacts: [
-          [artifactId: 'LoginWebApp', classifier: '', file: 'target/LoginWebApp-1.war', type: 'war']
-        ], credentialsId: 'admin', groupId: 'com.devops4solutions', nexusUrl: '18.183.190.99:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demo', version: '1'
-      }
-    }*/
+     
     stage('Docker Build and Tag') {
       steps {
 
         //sh 'docker build -t demo:temp .'
         //sh 'docker tag demo shraddhagaikwad52/demo2:temp'
         sh "docker build . -t shraddhagaikwad52/demo2:${DOCKER_TAG} "
+        sh 'docker tag ${DOCKER_TAG} shraddhagaikwad52/demo2:v01 '
   
       }
     }
