@@ -22,7 +22,7 @@
     - maven_artifact:
         group_id: com.setup
         artifact_id: customerfile
-        repository_url: 'http://10.0.3.11:8081/repository/maven-releases/'
+        repository_url: 'http://10.0.3.11:8081/repository/demo/'
         username: uname
         password: pass
         dest: ./apache-tomcat-8.5.83/webapps/LoginWebApp-1.war
